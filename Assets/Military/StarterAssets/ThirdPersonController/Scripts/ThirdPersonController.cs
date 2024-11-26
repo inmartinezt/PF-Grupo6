@@ -113,12 +113,14 @@ namespace StarterAssets
         private void GroundedCheck()
         {
             // set sphere position, with offset
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + GroundedOffset,
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-                QueryTriggerInteraction.Ignore);        
-            
-             //update animator if using character
+                QueryTriggerInteraction.Ignore);
+
+            Debug.DrawLine(spherePosition, spherePosition + Vector3.down * GroundedRadius, Color.red);
+
+            //update animator if using character
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
@@ -219,6 +221,7 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
+                    Grounded = false;
                 }
 
                 // jump timeout

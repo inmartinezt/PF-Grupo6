@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 268829800}
   - component: {fileID: 268829799}
   - component: {fileID: 268829798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -266,6 +266,22 @@ PrefabInstance:
     - target: {fileID: 1808850219374594019, guid: 3ccb35916a1f0e54f925905604c1b547, type: 3}
       propertyPath: m_Name
       value: PrincipalCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322089397969812798, guid: 3ccb35916a1f0e54f925905604c1b547, type: 3}
+      propertyPath: GroundedOffset
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322089397969812798, guid: 3ccb35916a1f0e54f925905604c1b547, type: 3}
+      propertyPath: GroundedRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322089397969812798, guid: 3ccb35916a1f0e54f925905604c1b547, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458537184173932777, guid: 3ccb35916a1f0e54f925905604c1b547, type: 3}
+      propertyPath: m_Center.y
+      value: 0.89
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
