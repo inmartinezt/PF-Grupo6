@@ -9,16 +9,15 @@ public class MirarCamara : MonoBehaviour
     float rotaciónX = 0;
 
     public Transform Player;
+    public Transform ReferenceCam1;
+    public Transform ReferenceCam3;
 
     private float pos;
-
-    Vector3 offset1 = new Vector3(0.1f, 1.76f, 0.3f);
-    Vector3 offset2 = new Vector3(0.1f, 1.94f, -1.56f);
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        transform.position = Player.transform.position + offset1;
+        transform.position = ReferenceCam1.transform.position;
         pos = 1;
 
     }
@@ -45,12 +44,12 @@ public class MirarCamara : MonoBehaviour
     {
         if (pos == 1)
         {
-            transform.position = Player.transform.position + offset2;
+            transform.position = ReferenceCam3.transform.position;
             pos = 2;
         }
         else
         {
-            transform.position = Player.transform.position + offset1;
+            transform.position = ReferenceCam1.transform.position;
             pos = 1;
         }
         
