@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: "Assets/Scenes/MainMen\xFA.unity"
     guid: 125a5f4921e172545a64cb9e5e651449
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Military/Military.unity
-    guid: e9017d5f96b9f09489b4b37e1d6eb914
+    path: Assets/Scenes/GamePlay.unity
+    guid: c1ce60bd746638c4b949f621faaf76ca
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b494885d4b2dc104eb0cf27acd96cf48, type: 3}
