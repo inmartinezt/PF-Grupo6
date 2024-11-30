@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoorState : MonoBehaviour
 {
     private Animator _animator;
     private bool _isPlayerNearby = false;
     private bool _isOpen = false;
+    public GameObject aura;
+
+    public GameObject SubAbrir;
+
+    private bool subs = true;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _animator.SetBool("Abrir", false);
+        aura.SetActive(true);
+        SubAbrir.SetActive(false);
     }
 
     void Update()
@@ -20,8 +28,13 @@ public class DoorState : MonoBehaviour
         {
             _animator.SetBool("Abrir", true);
             _isOpen = true;
+            aura.SetActive(false);
+            subs = false;
         }
-
+        if (subs == false)
+        {
+            SubAbrir.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +44,10 @@ public class DoorState : MonoBehaviour
         {
             _isPlayerNearby = true;
             Debug.Log("Jugador cerca de la puerta");
+            if (subs == true)
+            {
+                SubAbrir.SetActive(true);
+            }
         }
     }
 
@@ -41,6 +58,11 @@ public class DoorState : MonoBehaviour
         {
             _isPlayerNearby = false;
             Debug.Log("Jugador se alejó de la puerta");
+            if (subs == true)
+            {
+                SubAbrir.SetActive(false);
+            }
+            
         }
     }
 }
