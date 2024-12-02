@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/MainMen\xFA.unity"
     guid: 125a5f4921e172545a64cb9e5e651449
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Military/Military.unity
     guid: e9017d5f96b9f09489b4b37e1d6eb914
   m_configObjects:
