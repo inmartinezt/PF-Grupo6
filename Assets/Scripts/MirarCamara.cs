@@ -6,7 +6,7 @@ public class MirarCamara : MonoBehaviour
 {
 
     public float velocidad;
-    float rotaciónX = 0;
+    float rotacionX = 0;
 
     public Transform Player;
     public Transform ReferenceCam1;
@@ -28,10 +28,10 @@ public class MirarCamara : MonoBehaviour
         float MauseX = Input.GetAxis("Mouse X") * velocidad * Time.deltaTime;
         float MauseY = Input.GetAxis("Mouse Y") * velocidad * Time.deltaTime;
 
-        rotaciónX -= MauseY;
-        rotaciónX = Mathf.Clamp(rotaciónX, -90f, 90f);
+        rotacionX -= MauseY;
+        rotacionX = Mathf.Clamp(rotacionX, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(rotaciónX, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
         Player.Rotate (Vector3.up * MauseX);
 
         if (Input.GetKeyDown(KeyCode.K))
