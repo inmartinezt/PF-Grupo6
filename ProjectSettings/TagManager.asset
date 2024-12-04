@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Ground
+  - Film
+  - LockedDoor
   layers:
   - Default
   - TransparentFX
