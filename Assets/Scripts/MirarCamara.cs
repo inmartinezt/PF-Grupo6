@@ -1,57 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Description: Camera controller with mouse movements and cursor selection options.
+/// Author: Pedro Barrios A. Optimized by: Ivonne Martinez.
+/// Date: 03/12/2024
+/// </summary>
 public class MirarCamara : MonoBehaviour
 {
-
-    public float velocidad;
-    float rotacionX = 0;
-
+    public float speed = 5f;
+    private float rotationX = 0;
     public Transform Player;
-    public Transform ReferenceCam1;
-    public Transform ReferenceCam3;
-
-    private float pos;
-
+    public CameraPositionController cameraPositionController;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        transform.position = ReferenceCam1.transform.position;
-        pos = 1;
-
+        transform.position = cameraPositionController.GetCurrentCameraPosition();
     }
-
-    
     void Update()
     {
-        float MauseX = Input.GetAxis("Mouse X") * velocidad * Time.deltaTime;
-        float MauseY = Input.GetAxis("Mouse Y") * velocidad * Time.deltaTime;
-
-        rotacionX -= MauseY;
-        rotacionX = Mathf.Clamp(rotacionX, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
-        Player.Rotate (Vector3.up * MauseX);
-
+        float MauseX = Input.GetAxis("Mouse X") * speed * Time.deltaTime;
+        float MauseY = Input.GetAxis("Mouse Y") * speed * Time.deltaTime;
+        rotationX -= MauseY;
+        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+        Player.Rotate(Vector3.up * MauseX);
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ChangePosition();
+            cameraPositionController.ToggleCameraPosition();  // Cambiar posición usando el controlador
         }
     }
-
-    private void ChangePosition()
+}
+public class CameraPositionController : MonoBehaviour
+{
+    public Transform ReferenceCam1;
+    public Transform ReferenceCam3;
+    private int pos = 1;  // Usaremos un entero para rastrear la posición actual
+    public Vector3 GetCurrentCameraPosition() =>
+        pos == 1 ? ReferenceCam1.position : ReferenceCam3.position;
+    public void ToggleCameraPosition()
     {
-        if (pos == 1)
-        {
-            transform.position = ReferenceCam3.transform.position;
-            pos = 2;
-        }
-        else
-        {
-            transform.position = ReferenceCam1.transform.position;
-            pos = 1;
-        }
-        
+        pos = pos == 1 ? 2 : 1;  // Alterna entre 1 y 2.
     }
 }
