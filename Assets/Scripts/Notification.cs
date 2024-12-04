@@ -7,7 +7,6 @@ public class Notification : MonoBehaviour
 {
     public GameObject notification;
     public GameObject projectorsfound;
-    public GameObject mission1;
     public int film;
 
     public TextMeshProUGUI filmsrecogido;
@@ -29,9 +28,9 @@ public class Notification : MonoBehaviour
     IEnumerator Notificacion()
     {
         notification.SetActive(true);
+        projectorsfound.SetActive(true);
         yield return new WaitForSeconds(1.0f);
         notification.SetActive(false);
-        projectorsfound.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         projectorsfound.SetActive(false);
     }
