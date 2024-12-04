@@ -58,11 +58,8 @@ public class DoorState : MonoBehaviour
         {
             _isPlayerNearby = false;
             Debug.Log("Jugador se alejó de la puerta");
-            if (subs == true)
-            {
-                SubAbrir.SetActive(false);
-            }
-            
+            subs = true;
+            SubAbrir.SetActive(false);
         }
     }
 }
