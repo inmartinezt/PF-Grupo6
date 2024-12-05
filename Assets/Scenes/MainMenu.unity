@@ -1530,7 +1530,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1203667352}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
         m_MethodName: ClickAudioOn
         m_Mode: 1
@@ -1630,7 +1630,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1203667352}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
           m_MethodName: SwitchClickOn
           m_Mode: 1
@@ -1920,7 +1920,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5642173499568184074, guid: fe44b7ac0cac3e14c8000d1bdfd88790, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.842
+  m_Volume: 0.522
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2506,7 +2506,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1203667352}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
         m_MethodName: ClickAudioOn
         m_Mode: 1
@@ -2573,7 +2573,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1203667352}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
           m_MethodName: SwitchClickOn
           m_Mode: 1
@@ -2599,7 +2599,6 @@ GameObject:
   - component: {fileID: 1203667347}
   - component: {fileID: 1203667351}
   - component: {fileID: 1203667353}
-  - component: {fileID: 1203667352}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2703,18 +2702,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0f311a97bceaa84282293dab52f1a3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1203667352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203667346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f025dadea87cf9429ce80ffe9c17e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &1203667353
@@ -3167,7 +3154,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1203667352}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
         m_MethodName: ClickAudioOn
         m_Mode: 1
@@ -3246,7 +3233,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1203667352}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
           m_MethodName: SwitchClickOn
           m_Mode: 1
@@ -3574,7 +3561,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1203667352}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
         m_MethodName: ClickAudioOn
         m_Mode: 1
@@ -3641,7 +3628,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1203667352}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
           m_MethodName: SwitchClickOn
           m_Mode: 1
@@ -3909,7 +3896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgMusicSource: {fileID: 808152598}
   backgroundMusicClips:
-  - {fileID: 8300000, guid: 853845382f4b74237b10ba4ab861a1ec, type: 3}
+  - {fileID: 8300000, guid: 52fd700270ce24e949a85aa74598148c, type: 3}
   sfxSource: {fileID: 481553730}
   sfxClips:
   - {fileID: 8300000, guid: e2f1a4cf5c0bf9a4887939ecf3110c8d, type: 3}
@@ -4115,7 +4102,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1203667352}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
         m_MethodName: ClickAudioOn
         m_Mode: 1
@@ -4182,7 +4169,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1203667352}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Efectos, Assembly-CSharp
           m_MethodName: SwitchClickOn
           m_Mode: 1
@@ -4342,8 +4329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf17e26ccde4a94c9a1a1a2f6d964fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: {fileID: 1402025573}
-  resolucionesDropDown: {fileID: 0}
+  fullscreenToggle: {fileID: 1402025573}
 --- !u!114 &2025471999
 MonoBehaviour:
   m_ObjectHideFlags: 0

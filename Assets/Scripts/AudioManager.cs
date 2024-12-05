@@ -152,13 +152,13 @@ public class AudioManager : MonoBehaviour
     // Play sound for Keypad by index
     public void PlayKeypadSFX(int index)
     {
-        if (index >= 0 && index < keypadClips.Count)
+        if (keypadClips.Count > 0)
         {
-            sfxSource.PlayOneShot(keypadClips[index]);
+            sfxSource.PlayOneShot(keypadClips[0]); // Always play the first sound in the list
         }
         else
         {
-            Debug.LogWarning("Keypad SFX index out of range.");
+            Debug.LogWarning("No Keypad SFX available in the list.");
         }
     }
 }

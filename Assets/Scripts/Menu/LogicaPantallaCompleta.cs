@@ -1,71 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-
+/// <summary>
+/// Manages the full screen mode on the options menu.
+/// Author: Ivonne Martinez
+/// Date: 25/11/2024
+/// </summary>
 public class LogicaPantallaCompleta : MonoBehaviour
 {
-    public Toggle toggle;
-    public TMP_Dropdown resolucionesDropDown;
-    Resolution[] resoluciones;
-
-    void Start()
+    public Toggle fullscreenToggle;
+    private const string FullscreenPrefKey = "FullscreenMode";
+    private void Start()
     {
-        if (Screen.fullScreen)
+        // Load saved fullscreen preference
+        bool isFullscreen = PlayerPrefs.GetInt(FullscreenPrefKey, 1) == 1; // Default to fullscreen
+        Screen.fullScreen = isFullscreen;
+
+        // Initialize the toggle
+        if (fullscreenToggle != null)
         {
-            toggle.isOn = true;
+            fullscreenToggle.isOn = isFullscreen;
+            fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
         }
         else
         {
-            toggle.isOn = false;  
+            Debug.LogError("Fullscreen Toggle is not assigned in the Inspector.");
         }
-
-        RevisarResolucion();
     }
-
-
-    void Update()
+    public void SetFullscreen(bool isFullscreen)
     {
-        
+        Screen.fullScreen = isFullscreen;
+
+        // Save the preference
+        PlayerPrefs.SetInt(FullscreenPrefKey, isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
+
+        Debug.Log($"Fullscreen mode set to: {isFullscreen} and saved.");
     }
-
-    public void ActivarPantallaCompleta(bool pantallaCompleta)
+    private void OnDestroy()
     {
-        Screen.fullScreen = pantallaCompleta;
-    }
-
-    public void RevisarResolucion()
-    {
-        resoluciones = Screen.resolutions;
-        resolucionesDropDown.ClearOptions();
-        List<string> opciones = new List<string>();
-        int resolucionActual = 0;
-
-        for (int i = 0; i < resoluciones.Length; i++)
+        if (fullscreenToggle != null)
         {
-            string opcion = resoluciones[i].width + " x " + resoluciones[i].height;
-            opciones.Add(opcion);
-
-            if (Screen.fullScreen && resoluciones[i].width == Screen.currentResolution.width &&
-                resoluciones[i].height == Screen.currentResolution.height)
-            {
-                resolucionActual = i;
-            }
-
+            fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
         }
-
-        resolucionesDropDown.AddOptions(opciones);
-        resolucionesDropDown.value = resolucionActual;
-        resolucionesDropDown.RefreshShownValue();
-        resolucionesDropDown.value = PlayerPrefs.GetInt("numeroResolucion", 0);
-    
-    }
-
-    public void CambiarResolucion(int indiceResolucion)
-    {
-        PlayerPrefs.SetInt("numeroResolucion", resolucionesDropDown.value);
-        Resolution resolucion = resoluciones[indiceResolucion];
-        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
     }
 }
