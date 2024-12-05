@@ -3923,7 +3923,8 @@ MonoBehaviour:
   buttonClips:
   - {fileID: 8300000, guid: e342dea109f2d4284b375064b6a11b9b, type: 3}
   - {fileID: 8300000, guid: ac48353f058334ee6907454b6a2606af, type: 3}
-  keypadClips: []
+  keypadClips:
+  - {fileID: 8300000, guid: 7f9c87925441e43bdbb6399f1c1793a6, type: 3}
 --- !u!4 &1886306162
 Transform:
   m_ObjectHideFlags: 0
