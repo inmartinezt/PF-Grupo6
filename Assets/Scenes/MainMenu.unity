@@ -194,8 +194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114, y: -56}
-  m_SizeDelta: {x: 124.1866, y: 20}
+  m_AnchoredPosition: {x: -5.3131, y: -56}
+  m_SizeDelta: {x: 157.1024, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &89256177
 MonoBehaviour:
@@ -2717,9 +2717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f025dadea87cf9429ce80ffe9c17e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efectos: {fileID: 0}
-  clickAudio: {fileID: 8300000, guid: 8996cd5fe8fe8b148be39cbb2e2fa07a, type: 3}
-  switchClick: {fileID: 8300000, guid: d0400cd1478816141b79937d8e268cf6, type: 3}
 --- !u!82 &1203667353
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3392,7 +3389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 618, y: 116}
+  m_AnchoredPosition: {x: 618, y: 173}
   m_SizeDelta: {x: 150.3856, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1514716614
@@ -3728,8 +3725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.53006, y: -56.10001}
-  m_SizeDelta: {x: 55.3593, y: 54.6893}
+  m_AnchoredPosition: {x: -104.58163, y: -56.10001}
+  m_SizeDelta: {x: 70.0323, y: 54.6893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1707639229
 GameObject:
@@ -3912,7 +3909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgMusicSource: {fileID: 808152598}
   backgroundMusicClips:
-  - {fileID: 8300000, guid: 2c1ab6fed8c9f4159afa801c3484d807, type: 3}
+  - {fileID: 8300000, guid: 853845382f4b74237b10ba4ab861a1ec, type: 3}
   sfxSource: {fileID: 481553730}
   sfxClips:
   - {fileID: 8300000, guid: e2f1a4cf5c0bf9a4887939ecf3110c8d, type: 3}
@@ -3926,6 +3923,7 @@ MonoBehaviour:
   buttonClips:
   - {fileID: 8300000, guid: e342dea109f2d4284b375064b6a11b9b, type: 3}
   - {fileID: 8300000, guid: ac48353f058334ee6907454b6a2606af, type: 3}
+  keypadClips: []
 --- !u!4 &1886306162
 Transform:
   m_ObjectHideFlags: 0
@@ -4468,7 +4466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -96.13986, y: -54.00001}
+  m_AnchoredPosition: {x: -252, y: -54.00001}
   m_SizeDelta: {x: 404.3109, y: 105.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105187090
