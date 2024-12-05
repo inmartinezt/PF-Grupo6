@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 /// <summary>
 /// Manages all audio functionalities in the game, including background and SFX.
 /// Implements Singleton for global access and ensures scalability and reusability.
@@ -34,7 +33,8 @@ public class AudioManager : MonoBehaviour
     [Header("Button SFX")]
     [Tooltip("List of button click sound effects for random play")]
     public List<AudioClip> buttonClips;
-
+    [Header("Keypad SFX")] // New section for keypad-specific sounds
+    public List<AudioClip> keypadClips; // Dedicated list for keypad sounds like PadTouch.mp3
     private void Awake()
     {
         if (Instance == null)
@@ -48,27 +48,22 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     private void Start()
     {
         AssignButtonSounds();
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         AssignButtonSounds(); // Re-assign button sounds for the new scene
     }
-
     /// <summary>
     /// Plays the first background music clip (typically for the menu).
     /// </summary>
@@ -81,7 +76,6 @@ public class AudioManager : MonoBehaviour
             bgMusicSource.Play();
         }
     }
-
     /// <summary>
     /// Plays a random background music clip for gameplay (excluding the first clip).
     /// </summary>
@@ -100,7 +94,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Not enough background music clips for gameplay.");
         }
     }
-
     /// <summary>
     /// Plays a specific SFX by index.
     /// </summary>
@@ -115,7 +108,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("SFX index out of range.");
         }
     }
-
     /// <summary>
     /// Plays a random sound effect for footsteps.
     /// </summary>
@@ -123,7 +115,6 @@ public class AudioManager : MonoBehaviour
     {
         PlayRandomSFX(footstepsClips);
     }
-
     private void PlayRandomSFX(List<AudioClip> clips)
     {
         if (clips.Count > 0)
@@ -136,7 +127,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No sound effects available in the list.");
         }
     }
-
     /// <summary>
     /// Play a random button click sound effect.
     /// </summary>
@@ -148,7 +138,6 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(randomClip);
         }
     }
-
     /// <summary>
     /// Assigns the PlayButtonSFX method to all buttons in the scene.
     /// </summary>
@@ -158,6 +147,18 @@ public class AudioManager : MonoBehaviour
         foreach (Button button in buttons)
         {
             button.onClick.AddListener(() => PlayButtonSFX());
+        }
+    }
+    // Play sound for Keypad by index
+    public void PlayKeypadSFX(int index)
+    {
+        if (index >= 0 && index < keypadClips.Count)
+        {
+            sfxSource.PlayOneShot(keypadClips[index]);
+        }
+        else
+        {
+            Debug.LogWarning("Keypad SFX index out of range.");
         }
     }
 }
