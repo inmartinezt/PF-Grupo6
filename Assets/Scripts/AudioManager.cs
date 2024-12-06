@@ -11,30 +11,25 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; } // Singleton instance
-
     [Header("Music")]
     [Tooltip("AudioSource for background music")]
     public AudioSource bgMusicSource;
-
     [Tooltip("List of background music clips for random play")]
     public List<AudioClip> backgroundMusicClips;
-
     [Header("SFX")]
     [Tooltip("AudioSource for general sound effects (SFX)")]
     public AudioSource sfxSource;
-
     [Tooltip("List of general SFX clips (Indexed)")]
     public List<AudioClip> sfxClips;
-
     [Header("Footsteps SFX")]
     [Tooltip("List of footsteps sound effects for random play")]
     public List<AudioClip> footstepsClips;
-
     [Header("Button SFX")]
     [Tooltip("List of button click sound effects for random play")]
     public List<AudioClip> buttonClips;
     [Header("Keypad SFX")] // New section for keypad-specific sounds
-    public List<AudioClip> keypadClips; // Dedicated list for keypad sounds like PadTouch.mp3
+    public List<AudioClip> keypadClips; // Dedicated list for keypad sounds
+    private float originalBgMusicVolume; // To store the original volume
     private void Awake()
     {
         if (Instance == null)
@@ -50,6 +45,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
+        originalBgMusicVolume = bgMusicSource.volume; // Store the original volume
         AssignButtonSounds();
     }
     private void OnEnable()
@@ -77,35 +73,30 @@ public class AudioManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// Plays a random background music clip for gameplay (excluding the first clip).
-    /// </summary>
-    public void PlayRandomBgMusic()
-    {
-        if (backgroundMusicClips.Count > 1)
-        {
-            int randomIndex = Random.Range(1, backgroundMusicClips.Count);
-            AudioClip randomClip = backgroundMusicClips[randomIndex];
-            bgMusicSource.clip = randomClip;
-            bgMusicSource.loop = true;
-            bgMusicSource.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Not enough background music clips for gameplay.");
-        }
-    }
-    /// <summary>
     /// Plays a specific SFX by index.
     /// </summary>
     public void PlaySFX(int index)
     {
+        if (sfxClips == null || sfxClips.Count == 0)
+        {
+            Debug.LogError("SFX clips list is empty or not assigned.");
+            return;
+        }
+
+        if (sfxSource == null)
+        {
+            Debug.LogError("SFX AudioSource is not assigned.");
+            return;
+        }
+
         if (index >= 0 && index < sfxClips.Count)
         {
+            Debug.Log($"Playing SFX: {sfxClips[index].name}");
             sfxSource.PlayOneShot(sfxClips[index]);
         }
         else
         {
-            Debug.LogWarning("SFX index out of range.");
+            Debug.LogWarning($"SFX index out of range: {index}. Valid range is 0 to {sfxClips.Count - 1}.");
         }
     }
     /// <summary>
@@ -160,5 +151,19 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("No Keypad SFX available in the list.");
         }
+    }
+    /// <summary>
+    /// Lowers the volume of the background music.
+    /// </summary>
+    public void LowerBgMusicVolume(float newVolume)
+    {
+        bgMusicSource.volume = Mathf.Clamp(newVolume, 0f, originalBgMusicVolume);
+    }
+    /// <summary>
+    /// Restores the original volume of the background music.
+    /// </summary>
+    public void RestoreBgMusicVolume()
+    {
+        bgMusicSource.volume = originalBgMusicVolume;
     }
 }

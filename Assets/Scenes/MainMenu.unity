@@ -1920,7 +1920,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5642173499568184074, guid: fe44b7ac0cac3e14c8000d1bdfd88790, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.522
+  m_Volume: 0.478
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3899,9 +3899,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 52fd700270ce24e949a85aa74598148c, type: 3}
   sfxSource: {fileID: 481553730}
   sfxClips:
-  - {fileID: 8300000, guid: e2f1a4cf5c0bf9a4887939ecf3110c8d, type: 3}
-  - {fileID: 8300000, guid: 6ef79d6bc5a4acd49befec67618c80b7, type: 3}
-  - {fileID: 8300000, guid: 2caf6fa0ff9f47245a4c2b33410b028e, type: 3}
   - {fileID: 8300000, guid: 238a4b6fc6405c34fb55f8b9ce93ff1c, type: 3}
   footstepsClips:
   - {fileID: 8300000, guid: 68361a8cc24aa464a870a02cf66167d1, type: 3}
