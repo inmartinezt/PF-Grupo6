@@ -1,69 +1,80 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CinematicController : MonoBehaviour
 {
-    [Header("Cinematic Settings")]
-    public Image[] cinematicImages; // Array to hold the images for the cinematic
-    public float[] imageDisplayDurations; // Array to specify the duration for each image
-    public int[] audioClipIndices; // Indices to specify which audio clips to play for this cinematic
+    public List<Image> cinematicImages; // Lista de imágenes en el canvas
+    public float[] imageDisplayTimes;   // Tiempos para mostrar cada imagen
+    public int audioIndex = 2; // Índice del SFX en el AudioManager
 
     private int currentImageIndex = 0;
-    private bool isCinematicPlaying = true;
 
     private void Start()
     {
-        // Start the cinematic when the scene is loaded
-        StartCoroutine(PlayCinematic());
+        StartCinematic();
     }
 
-    private IEnumerator PlayCinematic()
+    public void StartCinematic()
     {
-        // Hide all images initially
-        foreach (Image img in cinematicImages)
+        // Asegúrate de que hay suficientes imágenes y tiempos
+        if (cinematicImages.Count != imageDisplayTimes.Length)
         {
-            img.enabled = false;
+            Debug.LogError("El número de imágenes no coincide con el número de tiempos.");
+            return;
         }
 
-        // Start playing the audio for this cinematic
-        PlayCinematicAudio();
-
-        // Display images sequentially
-        while (currentImageIndex < cinematicImages.Length)
+        // Reproducir el audio desde el AudioManager
+        if (AudioManager.Instance != null)
         {
-            cinematicImages[currentImageIndex].enabled = true; // Show current image
-            yield return new WaitForSeconds(imageDisplayDurations[currentImageIndex]); // Wait for the specified duration
-            cinematicImages[currentImageIndex].enabled = false; // Hide current image
-            currentImageIndex++; // Move to the next image
+            AudioManager.Instance.PlaySFX(audioIndex); // Reproducir el SFX con el índice que indicas
+        }
+        else
+        {
+            Debug.LogError("AudioManager no está asignado correctamente.");
+            return;
         }
 
-        // After all images are displayed, load the next scene (MainMenu or whatever you need)
-        LoadNextScene();
+        // Mostrar la primera imagen
+        ShowImageAndPlayAudio(currentImageIndex);
     }
 
-    // Function to play the audio associated with this cinematic
-    private void PlayCinematicAudio()
+    private void ShowImageAndPlayAudio(int index)
     {
-        if (audioClipIndices.Length > 0 && audioClipIndices[currentImageIndex] >= 0)
+        if (index < cinematicImages.Count)
         {
-            // Play the audio using AudioManager based on the index for the current image
-            AudioManager.Instance.PlaySFX(audioClipIndices[currentImageIndex]);
+            // Mostrar la imagen en el Canvas
+            cinematicImages[index].gameObject.SetActive(true);
+
+            // Log de depuración
+            Debug.Log($"Mostrando imagen {index} durante {imageDisplayTimes[index]} segundos.");
+
+            // Desactivar la imagen después del tiempo asignado
+            StartCoroutine(WaitAndHideImage(index, imageDisplayTimes[index]));
         }
     }
 
-    // Function to load the next scene (MainMenu or other specified scene)
-    private void LoadNextScene()
+    private IEnumerator WaitAndHideImage(int index, float waitTime)
     {
-        SceneManager.LoadScene("MainMenu"); // You can change this scene name dynamically later
-    }
+        // Espera el tiempo asignado
+        yield return new WaitForSeconds(waitTime);
 
-    // Method to pass a different set of images, durations, and audio clip indices to this controller (useful if you need to trigger different cinematics)
-    public void SetCinematicDetails(Image[] images, float[] durations, int[] audioIndices)
-    {
-        cinematicImages = images;
-        imageDisplayDurations = durations;
-        audioClipIndices = audioIndices;
+        // Ocultar la imagen después del tiempo
+        cinematicImages[index].gameObject.SetActive(false);
+
+        // Pasar a la siguiente imagen (si hay más imágenes)
+        currentImageIndex++;
+        if (currentImageIndex < cinematicImages.Count)
+        {
+            ShowImageAndPlayAudio(currentImageIndex);
+        }
+        else
+        {
+            // Si ya no hay más imágenes, cambiar a la siguiente escena
+            Debug.Log("Cinemática terminada, cargando el menú principal.");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
