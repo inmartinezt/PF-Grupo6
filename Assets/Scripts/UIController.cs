@@ -41,12 +41,12 @@ public class UIController : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("GamePLay");
     }
 
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ModeCursor()

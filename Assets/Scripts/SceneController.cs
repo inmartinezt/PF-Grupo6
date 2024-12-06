@@ -7,7 +7,15 @@ public class SceneController : MonoBehaviour
 {
     public void Jugar()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("GamePlay");
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("Level3");
+        }
     }
 }
