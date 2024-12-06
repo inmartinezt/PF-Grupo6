@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Film
   - LockedDoor
+  - Note1
+  - Note2
+  - Morse
   layers:
   - Default
   - TransparentFX
