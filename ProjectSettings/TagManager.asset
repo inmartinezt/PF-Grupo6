@@ -6,6 +6,11 @@ TagManager:
   tags:
   - CinemachineTarget
   - Ground
+  - Film
+  - LockedDoor
+  - Note1
+  - Note2
+  - Morse
   layers:
   - Default
   - TransparentFX

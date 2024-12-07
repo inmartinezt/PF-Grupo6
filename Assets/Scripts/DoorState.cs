@@ -7,12 +7,11 @@ public class DoorState : MonoBehaviour
 {
     private Animator _animator;
     private bool _isPlayerNearby = false;
-    private bool _isOpen = false;
     public GameObject aura;
 
     public GameObject SubAbrir;
+    private Collider objectCollider;
 
-    private bool subs = true;
 
     void Start()
     {
@@ -20,6 +19,7 @@ public class DoorState : MonoBehaviour
         _animator.SetBool("Abrir", false);
         aura.SetActive(true);
         SubAbrir.SetActive(false);
+        objectCollider = GetComponent<Collider>();
     }
 
     void Update()
@@ -27,13 +27,9 @@ public class DoorState : MonoBehaviour
         if (_isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             _animator.SetBool("Abrir", true);
-            _isOpen = true;
             aura.SetActive(false);
-            subs = false;
-        }
-        if (subs == false)
-        {
             SubAbrir.SetActive(false);
+            Destroy(objectCollider);
         }
     }
 
@@ -44,10 +40,7 @@ public class DoorState : MonoBehaviour
         {
             _isPlayerNearby = true;
             Debug.Log("Jugador cerca de la puerta");
-            if (subs == true)
-            {
-                SubAbrir.SetActive(true);
-            }
+            SubAbrir.SetActive(true);
         }
     }
 
@@ -58,12 +51,9 @@ public class DoorState : MonoBehaviour
         {
             _isPlayerNearby = false;
             Debug.Log("Jugador se alejó de la puerta");
-            if (subs == true)
-            {
-                SubAbrir.SetActive(false);
-            }
-            
+            SubAbrir.SetActive(false);
         }
     }
+
 }
 
