@@ -768,6 +768,7 @@ GameObject:
   - component: {fileID: 2322089397969812798}
   - component: {fileID: 7210947369057477518}
   - component: {fileID: 2855602572714664878}
+  - component: {fileID: 475855171407792345}
   m_Layer: 0
   m_Name: PrincipalCharacter
   m_TagString: Player
@@ -785,7 +786,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.441486, y: 0, z: 9.177}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.4, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4509074887970272215}
@@ -942,6 +943,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &475855171407792345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808850219374594019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e988c6fbd224a4943892525610cf823a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notification: {fileID: 0}
+  projectorsfound: {fileID: 0}
+  film: 0
+  filmsrecogido: {fileID: 0}
 --- !u!1 &1909554609638812651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d4c1fe0d8354242aae13b7610fcccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 100
+  speed: 40
   Player: {fileID: 273573812940094482}
   ReferenceCam1: {fileID: 8887793154845389442}
   ReferenceCam3: {fileID: 8090928831137043371}

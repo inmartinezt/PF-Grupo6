@@ -10,9 +10,11 @@ public class RadioInteraction : MonoBehaviour
     public float interactionDistance = 4f; // Distance to trigger interaction
     private Transform playerTransform; // Reference to the player's transform
     private bool isNear = false; // Is the player near the object
+    public GameObject Sub;
 
     private void Start()
     {
+        Sub.SetActive(false);
         // Find the player by tag (make sure the player object has the "Player" tag)
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -31,7 +33,13 @@ public class RadioInteraction : MonoBehaviour
         if (playerTransform != null)
         {
             isNear = Vector3.Distance(transform.position, playerTransform.position) <= interactionDistance;
+            
+        } 
+        if (isNear)
+        {
+            Sub.SetActive(true);
         }
+        else Sub.SetActive(false);
 
         // Trigger interaction when near and pressing "E"
         if (isNear && Input.GetKeyDown(KeyCode.E))

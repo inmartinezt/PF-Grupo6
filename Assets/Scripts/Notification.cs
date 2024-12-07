@@ -17,7 +17,7 @@ public class Notification : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        // Detecta si el objeto que colisiona es el jugador
+        // Detecta si el objeto que colisiona es el objeto
         if (other.CompareTag("Film"))
         {
             Destroy(other.gameObject);
