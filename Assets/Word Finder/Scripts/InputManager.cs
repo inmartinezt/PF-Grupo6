@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
 
          if(wordContainers[currentWordContainerIndex].IsComplete())
          {
-              // CheckWord();
+               CheckWord();
               // currentWordContainerIndex++;
          }
 
