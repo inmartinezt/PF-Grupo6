@@ -30,6 +30,30 @@ public class AudioManager : MonoBehaviour
     [Header("Keypad SFX")] // New section for keypad-specific sounds
     public List<AudioClip> keypadClips; // Dedicated list for keypad sounds
     private float originalBgMusicVolume; // To store the original volume
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            // No reproducimos la música inicial aquí para evitar conflictos
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        originalBgMusicVolume = bgMusicSource.volume;
+        AssignButtonSounds();
+
+        // Play initial music if the starting scene is Cinematic1
+        if (SceneManager.GetActiveScene().name == "Cinematic1")
+        {
+            PlayInitialMusic();
+        }
+    }
     // Subscribe to the scene loaded event
     private void OnEnable()
     {
@@ -45,45 +69,28 @@ public class AudioManager : MonoBehaviour
     {
         UpdateBackgroundMusic(scene.name); // Cambia la música según la escena cargada
     }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            PlayInitialMusic(); // Play the appropriate initial music based on scene
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    private void Start()
-    {
-        originalBgMusicVolume = bgMusicSource.volume; // Store the original volume
-        AssignButtonSounds();
-    }
     /// <summary>
     /// This method will play the correct background music based on the scene name.
     /// </summary>
     private void UpdateBackgroundMusic(string sceneName)
     {
         Debug.Log($"Scene loaded: {sceneName}. Updating background music...");
-
+        // Restore volume before assigning new music
+        RestoreBgMusicVolume();
         if (bgMusicSource.isPlaying)
         {
-            Debug.Log("Stopping currently playing music.");
+            Debug.Log("Stopping current background music.");
             bgMusicSource.Stop();
         }
 
         if (sceneName == "Cinematic1" || sceneName == "MainMenu" || sceneName == "Cinematic2")
         {
-            Debug.Log("Playing music for cinematic or main menu scenes.");
+            Debug.Log("Playing music for cinematic or main menu scenes (Index 0).");
             PlayBackgroundMusic(0);
         }
         else if (sceneName == "GamePlay" || sceneName == "Level3")
         {
-            Debug.Log("Playing music for gameplay or Level3 scenes.");
+            Debug.Log("Playing music for gameplay or Level3 scenes (Index 1).");
             PlayBackgroundMusic(1);
         }
         else
@@ -96,23 +103,24 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void PlayBackgroundMusic(int index)
     {
-        if (backgroundMusicClips.Count > index)
+        if (index < 0 || index >= backgroundMusicClips.Count)
         {
-            if (bgMusicSource.clip != backgroundMusicClips[index])
-            {
-                bgMusicSource.clip = backgroundMusicClips[index];
-                Debug.Log($"Assigned background music: {backgroundMusicClips[index].name}");
-            }
-
-            bgMusicSource.loop = true;
-            bgMusicSource.Play();
-
-            Debug.Log($"Playing background music: {bgMusicSource.clip.name}");
+            Debug.LogError($"Invalid background music index: {index}. List count: {backgroundMusicClips.Count}");
+            return;
         }
-        else
+
+        if (bgMusicSource.isPlaying && bgMusicSource.clip == backgroundMusicClips[index])
         {
-            Debug.LogError($"Index {index} is out of range for backgroundMusicClips list. List count: {backgroundMusicClips.Count}");
+            Debug.LogWarning($"Background music index {index} is already playing.");
+            return;
         }
+
+        Debug.Log($"Assigning background music: {backgroundMusicClips[index].name}");
+        bgMusicSource.Stop(); // Stop any currently playing clip
+        bgMusicSource.clip = backgroundMusicClips[index];
+        bgMusicSource.loop = true;
+        bgMusicSource.Play();
+        Debug.Log($"Playing background music: {bgMusicSource.clip.name}");
     }
     /// <summary>
     /// Plays the initial music (menu music by default).
