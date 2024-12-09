@@ -154,6 +154,7 @@ MonoBehaviour:
   bgMusicSource: {fileID: 1095744765}
   backgroundMusicClips:
   - {fileID: 8300000, guid: 52fd700270ce24e949a85aa74598148c, type: 3}
+  - {fileID: 8300000, guid: 7e3d8cb74002e4912a2dcd5610e56b8e, type: 3}
   sfxSource: {fileID: 516481619}
   sfxClips:
   - {fileID: 8300000, guid: 238a4b6fc6405c34fb55f8b9ce93ff1c, type: 3}
@@ -313,11 +314,11 @@ MonoBehaviour:
   - {fileID: 266622983}
   imageDisplayTimes:
   - 3
-  - 3
-  - 6
   - 6
   - 6
   - 3
+  - 3
+  - 6
   audioIndex: 1
 --- !u!1 &443457409
 GameObject:

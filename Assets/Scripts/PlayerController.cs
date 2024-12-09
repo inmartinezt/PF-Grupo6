@@ -2,10 +2,11 @@
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
-
-/* Note: animations are called via the controller for both the character and capsule using animator null checks
- */
-
+/// <summary>
+/// Manages all player functionalities in the game, including moving and connection with AudioManager.
+/// Author: Pedro Barrios & Optimized by: Ivonne Martinez
+/// Date: 06/12/2024
+/// </summary>
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
@@ -15,7 +16,7 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
-        public float MoveSpeed = 2.0f;
+        public float MoveSpeed = 3.0f;
 
         public float SprintSpeed = 5.335f;
 
@@ -122,47 +123,40 @@ namespace StarterAssets
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
         }
-
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
+            // Determina la velocidad objetivo basándose en si el jugador está corriendo o caminando
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
-
-            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
-
-            // a reference to the players current horizontal velocity
+            // Si no hay entrada, la velocidad objetivo se pone a 0
+            if (_input.move == Vector2.zero) 
+            {
+                targetSpeed = 0.0f;
+            }
+            // Calcula la velocidad horizontal actual
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
-            float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
-
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * SpeedChangeRate);
-
-                // round speed to 3 decimal places
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
-            }
-
+            // Aplica una aceleración o desaceleración basada en la diferencia de velocidades
+            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * (_input.analogMovement ? _input.move.magnitude : 1f), Time.deltaTime * SpeedChangeRate);
+            _speed = Mathf.Round(_speed * 1000f) / 1000f; // Redondeo de la velocidad a 3 decimales
+            // Ajusta la animación de la velocidad
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
+            _animationBlend = Mathf.Max(_animationBlend, 0f); // Garantiza que no sea negativo
+            // Calcula la dirección del movimiento del jugador en función de la cámara
+            Vector3 targetDirection = GetTargetDirection();
+            // Mueve al jugador
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            // Actualiza las animaciones si es necesario
+            UpdateAnimator();
 
-            // normalise input direction
+            // Reproduce los sonidos de los pasos solo si el jugador está en el suelo y moviéndose
+            if (ShouldPlayFootstepsSound(currentHorizontalSpeed))
+            {
+                AudioManager.Instance.PlayFootstepsSFX();
+            }
+        }
+        private Vector3 GetTargetDirection()
+        {
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
             Vector3 camForward = Camera.main.transform.forward;
             Vector3 camRight = Camera.main.transform.right;
 
@@ -172,20 +166,23 @@ namespace StarterAssets
             camForward.Normalize();
             camRight.Normalize();
 
-            Vector3 targetDirection = (camForward * inputDirection.z + camRight * inputDirection.x).normalized;
+            return (camForward * inputDirection.z + camRight * inputDirection.x).normalized;
+        }
 
-            // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
-            // update animator if using character
+        private void UpdateAnimator()
+        {
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                _animator.SetFloat(_animIDMotionSpeed, _input.analogMovement ? _input.move.magnitude : 1f);
             }
         }
 
+        private bool ShouldPlayFootstepsSound(float currentHorizontalSpeed)
+        {
+            // Verifica si el jugador está en el suelo y tiene velocidad horizontal
+            return Grounded && currentHorizontalSpeed > _threshold;
+        }
         private void JumpAndGravity()
         {
             if (Grounded)
@@ -254,16 +251,6 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
-        }
-
-        private void OnFootstep()
-        {
-         
-        }
-
-        private void OnLand()
-        {
-
         }
     }
 }

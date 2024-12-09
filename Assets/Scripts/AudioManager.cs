@@ -30,13 +30,28 @@ public class AudioManager : MonoBehaviour
     [Header("Keypad SFX")] // New section for keypad-specific sounds
     public List<AudioClip> keypadClips; // Dedicated list for keypad sounds
     private float originalBgMusicVolume; // To store the original volume
+    // Subscribe to the scene loaded event
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    // Unsubscribe from the scene loaded event
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    // On scene loaded, update the background music depending on the scene
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateBackgroundMusic(scene.name); // Cambia la música según la escena cargada
+    }
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            PlayMenuMusic(); // Start with menu music
+            PlayInitialMusic(); // Play the appropriate initial music based on scene
         }
         else
         {
@@ -48,14 +63,44 @@ public class AudioManager : MonoBehaviour
         originalBgMusicVolume = bgMusicSource.volume; // Store the original volume
         AssignButtonSounds();
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    /// <summary>
+    /// This method will play the correct background music based on the scene name.
+    /// </summary>
+    private void UpdateBackgroundMusic(string sceneName)
     {
-        AssignButtonSounds(); // Re-assign button sounds for the new scene
+        // Detenemos la música actual antes de cambiar
+        if (bgMusicSource.isPlaying)
+        {
+            bgMusicSource.Stop();
+        }
+
+        if (sceneName == "Cinematic1" || sceneName == "MainMenu" || sceneName == "Cinematic2")
+        {
+            // Play music from index 0 for these scenes
+            PlayBackgroundMusic(0);
+        }
+        else if (sceneName == "GamePlay" || sceneName == "Level3")
+        {
+            // Play music from index 1 for these scenes
+            PlayBackgroundMusic(1);
+        }
     }
     /// <summary>
-    /// Plays the first background music clip (typically for the menu).
+    /// Plays a background music clip based on the index from the list.
     /// </summary>
-    public void PlayMenuMusic()
+    private void PlayBackgroundMusic(int index)
+    {
+        if (backgroundMusicClips.Count > 0 && bgMusicSource.clip != backgroundMusicClips[index])
+        {
+            bgMusicSource.clip = backgroundMusicClips[index];
+            bgMusicSource.loop = true;
+            bgMusicSource.Play();
+        }
+    }
+    /// <summary>
+    /// Plays the initial music (menu music by default).
+    /// </summary>
+    private void PlayInitialMusic()
     {
         if (backgroundMusicClips.Count > 0 && bgMusicSource.clip != backgroundMusicClips[0])
         {
@@ -64,9 +109,7 @@ public class AudioManager : MonoBehaviour
             bgMusicSource.Play();
         }
     }
-    /// <summary>
-    /// Plays a specific SFX by index.
-    /// </summary>
+    // The rest of the SFX functions can stay the same (no need to change them):
     public void PlaySFX(int index)
     {
         if (sfxClips == null || sfxClips.Count == 0)
@@ -91,9 +134,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"SFX index out of range: {index}. Valid range is 0 to {sfxClips.Count - 1}.");
         }
     }
-    /// <summary>
-    /// Plays a random sound effect for footsteps.
-    /// </summary>
+    // Play random footsteps sound effect
     public void PlayFootstepsSFX()
     {
         PlayRandomSFX(footstepsClips);
@@ -110,9 +151,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No sound effects available in the list.");
         }
     }
-    /// <summary>
-    /// Play a random button click sound effect.
-    /// </summary>
+    // Play random button click sound effect
     public void PlayButtonSFX()
     {
         if (buttonClips.Count > 0)
@@ -121,9 +160,8 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(randomClip);
         }
     }
-    /// <summary>
-    /// Assigns the PlayButtonSFX method to all buttons in the scene.
-    /// </summary>
+
+    // Assign PlayButtonSFX method to all buttons in the scene
     public void AssignButtonSounds()
     {
         Button[] buttons = FindObjectsOfType<Button>();
@@ -144,16 +182,12 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No Keypad SFX available in the list.");
         }
     }
-    /// <summary>
-    /// Lowers the volume of the background music.
-    /// </summary>
+    // Lower the volume of the background music
     public void LowerBgMusicVolume(float newVolume)
     {
         bgMusicSource.volume = Mathf.Clamp(newVolume, 0f, originalBgMusicVolume);
     }
-    /// <summary>
-    /// Restores the original volume of the background music.
-    /// </summary>
+    // Restore the original volume of the background music
     public void RestoreBgMusicVolume()
     {
         bgMusicSource.volume = originalBgMusicVolume;
