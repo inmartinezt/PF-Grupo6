@@ -158,8 +158,10 @@ MonoBehaviour:
   sfxSource: {fileID: 516481619}
   sfxClips:
   - {fileID: 8300000, guid: 238a4b6fc6405c34fb55f8b9ce93ff1c, type: 3}
-  - {fileID: 8300000, guid: 492c2b90f38e643a79568ecc2b054626, type: 3}
-  - {fileID: 8300000, guid: 23cce0e677b0a4061b408125f1ac0eea, type: 3}
+  - {fileID: 8300000, guid: 7e3d8cb74002e4912a2dcd5610e56b8e, type: 3}
+  - {fileID: 8300000, guid: 7e3d8cb74002e4912a2dcd5610e56b8e, type: 3}
+  - {fileID: 8300000, guid: 7e3d8cb74002e4912a2dcd5610e56b8e, type: 3}
+  - {fileID: 8300000, guid: d2d42219e95d44c78b2f6363819ae6c8, type: 3}
   footstepsClips:
   - {fileID: 8300000, guid: 1da5fde9ca5694d0a9db5e95c9fdba95, type: 3}
   - {fileID: 8300000, guid: 052b6a32e4ad54086bc6da54750dabe0, type: 3}

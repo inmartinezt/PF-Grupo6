@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 /// <summary>
 /// Manages all audio functionalities in the game, including background and SFX.
 /// Implements Singleton for global access and ensures scalability and reusability.

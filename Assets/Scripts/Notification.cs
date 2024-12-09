@@ -1,16 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+/// <summary>
+/// Manages the notifications for the first puzzles.
+/// Increment films and play the SFX.
+/// Author: Pedro Barrios & Optimized by: Ivonne Martinez
+/// Date: 09/12/2024
+/// </summary>
 public class Notification : MonoBehaviour
 {
     public GameObject notification;
     public GameObject projectorsfound;
     public int film;
-
     public TextMeshProUGUI filmsrecogido;
-
     private void Update()
     {
         filmsrecogido.text = film.ToString();  
@@ -21,6 +23,7 @@ public class Notification : MonoBehaviour
         if (other.CompareTag("Film"))
         {
             Destroy(other.gameObject);
+            AudioManager.Instance.PlaySFX(4);
             film++;
             StartCoroutine(Notificacion());
         }
