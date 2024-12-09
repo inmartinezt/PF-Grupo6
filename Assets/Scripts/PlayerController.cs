@@ -252,5 +252,14 @@ namespace StarterAssets
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
         }
+        private void OnFootstep()
+        {
+         
+        }
+
+        private void OnLand()
+        {
+
+        }
     }
 }

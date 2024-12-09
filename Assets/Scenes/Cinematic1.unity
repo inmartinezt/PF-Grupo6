@@ -161,9 +161,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 492c2b90f38e643a79568ecc2b054626, type: 3}
   - {fileID: 8300000, guid: 23cce0e677b0a4061b408125f1ac0eea, type: 3}
   footstepsClips:
-  - {fileID: 8300000, guid: 68361a8cc24aa464a870a02cf66167d1, type: 3}
-  - {fileID: 8300000, guid: 088c67f5eba12154690a3ce52596f179, type: 3}
-  - {fileID: 8300000, guid: 79703d3a22f52bc4b93a4093611fa87f, type: 3}
+  - {fileID: 8300000, guid: 1da5fde9ca5694d0a9db5e95c9fdba95, type: 3}
+  - {fileID: 8300000, guid: 052b6a32e4ad54086bc6da54750dabe0, type: 3}
+  - {fileID: 8300000, guid: 2fa105a4c3e7d46deac5a6ae069e44b1, type: 3}
   buttonClips:
   - {fileID: 8300000, guid: e342dea109f2d4284b375064b6a11b9b, type: 3}
   - {fileID: 8300000, guid: ac48353f058334ee6907454b6a2606af, type: 3}
