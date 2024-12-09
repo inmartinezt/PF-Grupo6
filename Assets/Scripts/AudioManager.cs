@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Manages all audio functionalities in the game, including background and SFX.
 /// Implements Singleton for global access and ensures scalability and reusability.
@@ -27,79 +28,87 @@ public class AudioManager : MonoBehaviour
     [Header("Button SFX")]
     [Tooltip("List of button click sound effects for random play")]
     public List<AudioClip> buttonClips;
-    [Header("Keypad SFX")] // New section for keypad-specific sounds
-    public List<AudioClip> keypadClips; // Dedicated list for keypad sounds
+    [Header("Keypad SFX")]
+    [Tooltip("List of keypad sound effects (Indexed)")]
+    public List<AudioClip> keypadClips;
+
     private float originalBgMusicVolume; // To store the original volume
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            // No reproducimos la música inicial aquí para evitar conflictos
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
     private void Start()
     {
         originalBgMusicVolume = bgMusicSource.volume;
-        AssignButtonSounds();
 
-        // Play initial music if the starting scene is Cinematic1
-        if (SceneManager.GetActiveScene().name == "Cinematic1")
-        {
-            PlayInitialMusic();
-        }
+        // Start the appropriate music based on the current scene
+        UpdateBackgroundMusic(SceneManager.GetActiveScene().name);
+        AssignButtonSounds();
     }
-    // Subscribe to the scene loaded event
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    // Unsubscribe from the scene loaded event
+
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    // On scene loaded, update the background music depending on the scene
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateBackgroundMusic(scene.name); // Cambia la música según la escena cargada
+        UpdateBackgroundMusic(scene.name);
     }
+
     /// <summary>
-    /// This method will play the correct background music based on the scene name.
+    /// Updates the background music based on the current scene.
     /// </summary>
     private void UpdateBackgroundMusic(string sceneName)
     {
         Debug.Log($"Scene loaded: {sceneName}. Updating background music...");
-        // Restore volume before assigning new music
-        RestoreBgMusicVolume();
-        if (bgMusicSource.isPlaying)
-        {
-            Debug.Log("Stopping current background music.");
-            bgMusicSource.Stop();
-        }
+        int musicIndex = GetMusicIndexForScene(sceneName);
 
-        if (sceneName == "Cinematic1" || sceneName == "MainMenu" || sceneName == "Cinematic2")
+        if (musicIndex != -1)
         {
-            Debug.Log("Playing music for cinematic or main menu scenes (Index 0).");
-            PlayBackgroundMusic(0);
-        }
-        else if (sceneName == "GamePlay" || sceneName == "Level3")
-        {
-            Debug.Log("Playing music for gameplay or Level3 scenes (Index 1).");
-            PlayBackgroundMusic(1);
+            PlayBackgroundMusic(musicIndex);
         }
         else
         {
-            Debug.LogWarning("Scene does not have associated background music.");
+            Debug.LogWarning("No background music is assigned to this scene.");
+            bgMusicSource.Stop();
         }
     }
+
     /// <summary>
-    /// Plays a background music clip based on the index from the list.
+    /// Determines which music index to use based on the scene name.
+    /// </summary>
+    private int GetMusicIndexForScene(string sceneName)
+    {
+        if (sceneName == "Cinematic1" || sceneName == "MainMenu" || sceneName == "Cinematic2")
+        {
+            return 0; // Index 0 for cinematic and main menu
+        }
+        else if (sceneName == "GamePlay" || sceneName == "Level3")
+        {
+            return 1; // Index 1 for gameplay levels
+        }
+
+        return -1; // No music assigned for this scene
+    }
+
+    /// <summary>
+    /// Plays a background music clip based on the index.
     /// </summary>
     private void PlayBackgroundMusic(int index)
     {
@@ -111,30 +120,18 @@ public class AudioManager : MonoBehaviour
 
         if (bgMusicSource.isPlaying && bgMusicSource.clip == backgroundMusicClips[index])
         {
-            Debug.LogWarning($"Background music index {index} is already playing.");
+            Debug.Log($"Music index {index} is already playing.");
             return;
         }
 
-        Debug.Log($"Assigning background music: {backgroundMusicClips[index].name}");
-        bgMusicSource.Stop(); // Stop any currently playing clip
+        Debug.Log($"Switching to music: {backgroundMusicClips[index].name}");
+        bgMusicSource.Stop();
         bgMusicSource.clip = backgroundMusicClips[index];
         bgMusicSource.loop = true;
         bgMusicSource.Play();
-        Debug.Log($"Playing background music: {bgMusicSource.clip.name}");
     }
-    /// <summary>
-    /// Plays the initial music (menu music by default).
-    /// </summary>
-    private void PlayInitialMusic()
-    {
-        if (backgroundMusicClips.Count > 0 && bgMusicSource.clip != backgroundMusicClips[0])
-        {
-            bgMusicSource.clip = backgroundMusicClips[0];
-            bgMusicSource.loop = true;
-            bgMusicSource.Play();
-        }
-    }
-    // The rest of the SFX functions can stay the same (no need to change them):
+
+    // --- Additional Functions (Original AudioManager Functionality) ---
     public void PlaySFX(int index)
     {
         if (sfxClips == null || sfxClips.Count == 0)
@@ -159,11 +156,12 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"SFX index out of range: {index}. Valid range is 0 to {sfxClips.Count - 1}.");
         }
     }
-    // Play random footsteps sound effect
+
     public void PlayFootstepsSFX()
     {
         PlayRandomSFX(footstepsClips);
     }
+
     private void PlayRandomSFX(List<AudioClip> clips)
     {
         if (clips.Count > 0)
@@ -176,7 +174,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No sound effects available in the list.");
         }
     }
-    // Play random button click sound effect
+
     public void PlayButtonSFX()
     {
         if (buttonClips.Count > 0)
@@ -186,7 +184,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Assign PlayButtonSFX method to all buttons in the scene
     public void AssignButtonSounds()
     {
         Button[] buttons = FindObjectsOfType<Button>();
@@ -195,24 +192,24 @@ public class AudioManager : MonoBehaviour
             button.onClick.AddListener(() => PlayButtonSFX());
         }
     }
-    // Play sound for Keypad by index
+
     public void PlayKeypadSFX(int index)
     {
-        if (keypadClips.Count > 0)
+        if (keypadClips.Count > 0 && index >= 0 && index < keypadClips.Count)
         {
-            sfxSource.PlayOneShot(keypadClips[0]); // Always play the first sound in the list
+            sfxSource.PlayOneShot(keypadClips[index]);
         }
         else
         {
-            Debug.LogWarning("No Keypad SFX available in the list.");
+            Debug.LogWarning("No Keypad SFX available or index out of range.");
         }
     }
-    // Lower the volume of the background music
+
     public void LowerBgMusicVolume(float newVolume)
     {
         bgMusicSource.volume = Mathf.Clamp(newVolume, 0f, originalBgMusicVolume);
     }
-    // Restore the original volume of the background music
+
     public void RestoreBgMusicVolume()
     {
         bgMusicSource.volume = originalBgMusicVolume;

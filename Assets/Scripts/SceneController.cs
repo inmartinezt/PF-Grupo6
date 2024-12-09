@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public void Jugar()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("GamePlay");
 
     }
 }
