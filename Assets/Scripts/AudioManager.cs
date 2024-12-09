@@ -68,21 +68,27 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void UpdateBackgroundMusic(string sceneName)
     {
-        // Detenemos la música actual antes de cambiar
+        Debug.Log($"Scene loaded: {sceneName}. Updating background music...");
+
         if (bgMusicSource.isPlaying)
         {
+            Debug.Log("Stopping currently playing music.");
             bgMusicSource.Stop();
         }
 
         if (sceneName == "Cinematic1" || sceneName == "MainMenu" || sceneName == "Cinematic2")
         {
-            // Play music from index 0 for these scenes
+            Debug.Log("Playing music for cinematic or main menu scenes.");
             PlayBackgroundMusic(0);
         }
         else if (sceneName == "GamePlay" || sceneName == "Level3")
         {
-            // Play music from index 1 for these scenes
+            Debug.Log("Playing music for gameplay or Level3 scenes.");
             PlayBackgroundMusic(1);
+        }
+        else
+        {
+            Debug.LogWarning("Scene does not have associated background music.");
         }
     }
     /// <summary>
@@ -90,11 +96,22 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void PlayBackgroundMusic(int index)
     {
-        if (backgroundMusicClips.Count > 0 && bgMusicSource.clip != backgroundMusicClips[index])
+        if (backgroundMusicClips.Count > index)
         {
-            bgMusicSource.clip = backgroundMusicClips[index];
+            if (bgMusicSource.clip != backgroundMusicClips[index])
+            {
+                bgMusicSource.clip = backgroundMusicClips[index];
+                Debug.Log($"Assigned background music: {backgroundMusicClips[index].name}");
+            }
+
             bgMusicSource.loop = true;
             bgMusicSource.Play();
+
+            Debug.Log($"Playing background music: {bgMusicSource.clip.name}");
+        }
+        else
+        {
+            Debug.LogError($"Index {index} is out of range for backgroundMusicClips list. List count: {backgroundMusicClips.Count}");
         }
     }
     /// <summary>
