@@ -35,20 +35,19 @@ public class SpecialDoor : MonoBehaviour
         {
             aura1.SetActive(true);
             aura2.SetActive(false);
-
         }
         if (notificacion.film == 5)
         {
             aura2.SetActive(true);
             aura1.SetActive(false);
-
         }
         if (_isPlayerNearby && Input.GetKeyDown(KeyCode.E) && notificacion.film == 5)
         {
             _animator.SetBool("Abrir", true);
-            Destroy(aura2);
             SubAbrir.SetActive(false);
             Destroy(objectCollider);
+            aura2.SetActive(false);
+            aura1.SetActive(false);
         }
     }
 
