@@ -65,13 +65,9 @@ public class ObjectInteraction : MonoBehaviour
                     morseImage.gameObject.SetActive(!morseImage.gameObject.activeSelf); // Toggle visibility
                     break;
             }
-            StartCoroutine(Notificacion());
+
+            Sub.SetActive(false);
         }
     }
-    IEnumerator Notificacion()
-    {
-        Rec.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
-        Rec.SetActive(false);
-    }
+
 }

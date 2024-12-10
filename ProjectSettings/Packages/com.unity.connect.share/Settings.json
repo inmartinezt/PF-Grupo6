@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/User/3D Objects/Grupo6 PF;C:/Users/User/3D Objects/ProyectoFinalGrupo6;C:/Users/User/3D Objects/WebGl;/Users/inmartinezt/Documents/Generation/PF-Grupo6/WebGL Builds;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/User/3D Objects/Grupo6 pf correcciones;C:/Users/User/3D Objects/Grupo6 PF;C:/Users/User/3D Objects/ProyectoFinalGrupo6;C:/Users/User/3D Objects/WebGl;/Users/inmartinezt/Documents/Generation/PF-Grupo6/WebGL Builds;;;;;\"}"
             }
         ]
     }

@@ -13,19 +13,38 @@ public class Notification : MonoBehaviour
     public GameObject projectorsfound;
     public int film;
     public TextMeshProUGUI filmsrecogido;
+    public GameObject Sub;
+    public bool isNear = false;
+
     private void Update()
     {
+        if (isNear && Input.GetKeyDown(KeyCode.E))
+        {
+            film++;
+            isNear = false;
+            Sub.SetActive(false);
+            StartCoroutine(Notificacion());
+            AudioManager.Instance.PlaySFX(4);
+            
+        }
+            
         filmsrecogido.text = film.ToString();  
     }
     private void OnTriggerEnter(Collider other)
     {
-        // Detecta si el objeto que colisiona es el objeto
         if (other.CompareTag("Film"))
         {
-            Destroy(other.gameObject);
-            AudioManager.Instance.PlaySFX(4);
-            film++;
-            StartCoroutine(Notificacion());
+            isNear = true;
+            Sub.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Film"))
+        {
+            isNear = false;
+            Sub.SetActive(false);
         }
     }
     IEnumerator Notificacion()
