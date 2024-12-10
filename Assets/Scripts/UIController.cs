@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// Manages the UI of the play.
+/// Author: Pedro Barrios
+/// Date: 25/11/2024
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject botonPausa;

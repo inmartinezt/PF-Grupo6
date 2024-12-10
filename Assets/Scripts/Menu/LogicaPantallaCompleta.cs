@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// Manages the full screen mode on the options menu.
-/// Author: Ivonne Martinez
+/// Author: Ivonne Martinez, & Optimized by:Pedro Barrios
 /// Date: 25/11/2024
 /// </summary>
 public class LogicaPantallaCompleta : MonoBehaviour
@@ -12,7 +12,7 @@ public class LogicaPantallaCompleta : MonoBehaviour
     private void Start()
     {
         // Load saved fullscreen preference
-        bool isFullscreen = PlayerPrefs.GetInt(FullscreenPrefKey, 1) == 1; // Default to fullscreen
+        bool isFullscreen = PlayerPrefs.GetInt(FullscreenPrefKey, 0) == 1; // Default to fullscreen
         Screen.fullScreen = isFullscreen;
 
         // Initialize the toggle

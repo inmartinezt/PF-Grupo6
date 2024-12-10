@@ -768,7 +768,8 @@ GameObject:
   - component: {fileID: 2322089397969812798}
   - component: {fileID: 7210947369057477518}
   - component: {fileID: 2855602572714664878}
-  - component: {fileID: 475855171407792345}
+  - component: {fileID: 1723459823828384732}
+  - component: {fileID: 808165424855231419}
   m_Layer: 0
   m_Name: PrincipalCharacter
   m_TagString: Player
@@ -883,8 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
+  MoveSpeed: 3.5
+  SprintSpeed: 5.5
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -943,7 +944,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &475855171407792345
+--- !u!114 &1723459823828384732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -959,6 +960,23 @@ MonoBehaviour:
   projectorsfound: {fileID: 0}
   film: 0
   filmsrecogido: {fileID: 0}
+  Sub: {fileID: 0}
+  isNear: 0
+--- !u!114 &808165424855231419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808850219374594019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089358cf8ce8ff246a7b3d82e62d86f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inst1: {fileID: 0}
+  inst2: {fileID: 0}
+  inst3: {fileID: 0}
 --- !u!1 &1909554609638812651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d4c1fe0d8354242aae13b7610fcccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 20
   Player: {fileID: 273573812940094482}
   ReferenceCam1: {fileID: 8887793154845389442}
   ReferenceCam3: {fileID: 8090928831137043371}
