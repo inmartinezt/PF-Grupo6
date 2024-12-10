@@ -4,7 +4,7 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 /// <summary>
 /// Manages the interaction with the 3 letters into the Level 3 and those appears on Canvas.
-/// Author: Ivonne Martinez
+/// Author: Ivonne Martinez & Optimized by:Pedro Barrios
 /// Date: 21/11/2024
 /// </summary>
 public class ObjectInteraction : MonoBehaviour
@@ -65,13 +65,9 @@ public class ObjectInteraction : MonoBehaviour
                     morseImage.gameObject.SetActive(!morseImage.gameObject.activeSelf); // Toggle visibility
                     break;
             }
-            StartCoroutine(Notificacion());
+
+            Sub.SetActive(false);
         }
     }
-    IEnumerator Notificacion()
-    {
-        Rec.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
-        Rec.SetActive(false);
-    }
+
 }

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// Manages the UI of the play.
+/// Author: Pedro Barrios
+/// Date: 25/11/2024
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject botonPausa;
     [SerializeField] private GameObject panelPausa;
 
-    private bool isCursorLocked = true;
-
     void Start()
     {
         Time.timeScale = 1.0f;
-        botonPausa.SetActive(true);
+        botonPausa.SetActive(false);
         panelPausa.SetActive(false);
     }
     void Update()
@@ -21,6 +21,7 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ModeCursor();
+            Pause();
         }
     }
 
@@ -28,14 +29,14 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         panelPausa.SetActive(true);
-        botonPausa.SetActive(false);
     }
 
     public void Resume()
     {
         Time.timeScale = 1.0f;
         panelPausa.SetActive(false);
-        botonPausa.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Restart()
@@ -51,18 +52,8 @@ public class UIController : MonoBehaviour
 
     public void ModeCursor()
     {
-        isCursorLocked = !isCursorLocked;
-
-        if (isCursorLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
+            
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
