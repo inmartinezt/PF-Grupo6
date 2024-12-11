@@ -11,6 +11,10 @@ public class InputManager : MonoBehaviour
     public GameObject correct;
     public GameObject notificacion;
 
+    public GameObject clues;
+    public GameObject lost;
+    public GameObject instru;
+
     [Header(" Settings ")]
     private int currentWordContainerIndex;
     // Start is called before the first frame update
@@ -20,15 +24,13 @@ public class InputManager : MonoBehaviour
         Initialize();
 
         KeyboardKey.onKeyPressed += KeyPressedCallback;
+        instru.SetActive(true);
         error.SetActive(false);
         correct.SetActive(false);
         notificacion.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        clues.SetActive(false);
+        lost.SetActive(false);
     }
 
     private void Initialize()
@@ -40,8 +42,13 @@ public class InputManager : MonoBehaviour
 
     private void KeyPressedCallback(char letter)
     {
-
-         wordContainers[currentWordContainerIndex].Add(letter);
+        if (currentWordContainerIndex < 0 || currentWordContainerIndex >= wordContainers.Length)
+        {
+            Debug.LogWarning("Índice fuera de los límites. Pausando el juego.");
+            lost.SetActive(true);
+            return; // Sal de la función para evitar errores.
+        }
+        wordContainers[currentWordContainerIndex].Add(letter);
 
          if(wordContainers[currentWordContainerIndex].IsComplete())
          {
@@ -85,5 +92,27 @@ public class InputManager : MonoBehaviour
         notificacion.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("Level3");
+    }
+
+    public void Clues()
+    {
+        clues.SetActive(true);
+    }
+    public void BackClues()
+    {
+        clues.SetActive(false);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Wordle");
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void Continue()
+    {
+        instru.SetActive(false);
     }
 }

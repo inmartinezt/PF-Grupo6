@@ -13,7 +13,7 @@ public class SceneController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Level3");
+            SceneManager.LoadScene("Wordle");
         }
     }
 }
