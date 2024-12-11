@@ -22,6 +22,8 @@ public class UIController : MonoBehaviour
         {
             ModeCursor();
             Pause();
+
+            
         }
     }
 
