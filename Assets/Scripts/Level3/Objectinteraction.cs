@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.UI;
 /// <summary>
 /// Manages the interaction with the 3 letters into the Level 3 and those appears on Canvas.

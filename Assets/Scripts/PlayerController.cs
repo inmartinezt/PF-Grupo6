@@ -182,6 +182,7 @@ namespace StarterAssets
         {
             // Verifica si el jugador está en el suelo y tiene velocidad horizontal
             return Grounded && currentHorizontalSpeed > _threshold;
+            AudioManager.Instance.PlayFootstepsSFX();
         }
         private void JumpAndGravity()
         {
@@ -254,7 +255,7 @@ namespace StarterAssets
         }
         private void OnFootstep()
         {
-         
+            
         }
 
         private void OnLand()

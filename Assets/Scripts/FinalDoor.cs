@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class FinalDoor : MonoBehaviour
@@ -17,8 +13,14 @@ public class FinalDoor : MonoBehaviour
         mission2.SetActive(false);
     }
 
-    // Update is called once per frame
-
+    private void Update()
+    {
+        if (_isPlayerNearby)
+        {
+            // Aquí puedes añadir alguna lógica para lo que pasa cuando el jugador está cerca
+            Debug.Log("Jugador cerca de la puerta.");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +31,7 @@ public class FinalDoor : MonoBehaviour
             mission2.SetActive(true);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         // Cuando el jugador se aleja, resetea la variable
