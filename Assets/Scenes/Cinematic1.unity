@@ -154,7 +154,7 @@ MonoBehaviour:
   bgMusicSource: {fileID: 1095744765}
   backgroundMusicClips:
   - {fileID: 8300000, guid: 52fd700270ce24e949a85aa74598148c, type: 3}
-  - {fileID: 8300000, guid: 7e3d8cb74002e4912a2dcd5610e56b8e, type: 3}
+  - {fileID: 8300000, guid: d93b3846340b1418bb46279d4587fb1a, type: 3}
   sfxSource: {fileID: 516481619}
   sfxClips:
   - {fileID: 8300000, guid: 238a4b6fc6405c34fb55f8b9ce93ff1c, type: 3}
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 960, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -905,7 +905,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5642173499568184074, guid: fe44b7ac0cac3e14c8000d1bdfd88790, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.416
+  m_Volume: 0.451
   m_Pitch: 1
   Loop: 1
   Mute: 0

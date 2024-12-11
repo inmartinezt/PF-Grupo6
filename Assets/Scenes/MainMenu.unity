@@ -4209,6 +4209,10 @@ PrefabInstance:
       propertyPath: imageMute
       value: 
       objectReference: {fileID: 1673497457}
+    - target: {fileID: 8069387200367778026, guid: 8cef42ad45e120447a47548ca29a9ba8, type: 3}
+      propertyPath: sliderValue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

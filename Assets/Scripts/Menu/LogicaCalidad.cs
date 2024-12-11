@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
 public class LogicaCalidad : MonoBehaviour
 {
     public TMP_Dropdown dropDown;
@@ -14,12 +11,10 @@ public class LogicaCalidad : MonoBehaviour
         dropDown.value = calidad;
         AjustarCalidad();
     }
-
     void Update()
     {
         
     }
-
     public void AjustarCalidad()
     {
         QualitySettings.SetQualityLevel(dropDown.value);

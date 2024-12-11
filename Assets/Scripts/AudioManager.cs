@@ -159,7 +159,7 @@ public class AudioManager : MonoBehaviour
     // Método para controlar el volumen de los pasos de forma independiente
     public void SetFootstepsVolume(float volume)
     {
-        footstepsAudioSource.volume = Mathf.Clamp(volume, 0f, 1f);
+        footstepsAudioSource.volume = Mathf.Clamp(volume, 0f, 3f);
     }
 
     public void PlayFootstepsSFX()
@@ -224,7 +224,7 @@ public class AudioManager : MonoBehaviour
 
     public void LowerBgMusicVolume(float newVolume)
     {
-        bgMusicSource.volume = Mathf.Clamp(newVolume, 0f, originalBgMusicVolume);
+        bgMusicSource.volume = Mathf.Clamp(newVolume, 0.5f, originalBgMusicVolume);
     }
 
     public void RestoreBgMusicVolume()
