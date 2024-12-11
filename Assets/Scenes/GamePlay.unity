@@ -1738,18 +1738,75 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 706588057098056976, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 706588057098056976, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781794280387954191, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_text
+      value: Door is locked. Collect 5 electrical modules from this floor to advance
+        to the next floor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 781794280387954191, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 781794280387954191, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2615935269668944967, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
     - target: {fileID: 781794280387954191, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008535712387994195, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 2717657471904580761, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
     - target: {fileID: 2862901086379083573, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
       propertyPath: m_text
-      value: "Explore the place, and you\u2019ll find a way to escape."
+      value: Explore the place to find a way to escape.
       objectReference: {fileID: 0}
+    - target: {fileID: 2862901086379083573, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 3865540853543961918, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 3865540853543961918, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376522953608185121, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
     - target: {fileID: 5532496123970383856, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
       propertyPath: m_Name
       value: Interfaz de Usuario
       objectReference: {fileID: 0}
+    - target: {fileID: 5732063836324143921, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 6073412489121230325, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 8365299836450631957, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
     - target: {fileID: 8492854222866203187, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1830,11 +1887,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7391055256216658811, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1920002125736178505, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2714508228408579743}
   m_SourcePrefab: {fileID: 100100000, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+--- !u!1 &2714508228408579742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1920002125736178505, guid: 06001fd2092366d4f871256c1b066bf7, type: 3}
+  m_PrefabInstance: {fileID: 2714508228408579741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2714508228408579743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714508228408579742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1001 &6267597586900598888
 PrefabInstance:
   m_ObjectHideFlags: 0

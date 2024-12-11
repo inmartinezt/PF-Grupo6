@@ -617,7 +617,7 @@ RectTransform:
   m_Father: {fileID: 33758395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -793,8 +793,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Low
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7f949ac5be0da0844a9ebca9a3450d71, type: 2}
-  m_sharedMaterial: {fileID: -7625528546868059825, guid: 7f949ac5be0da0844a9ebca9a3450d71, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.47058824, b: 0.5960751, a: 0.08627451}
+  m_Color: {r: 0.8962264, g: 0.47058824, b: 0.5960751, a: 0.105882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1273,7 +1273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &503076544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2802,8 +2802,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1380534111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3103,7 +3103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.47058824, b: 0.5960751, a: 0.08627451}
+  m_Color: {r: 0.8962264, g: 0.47058824, b: 0.5960751, a: 0.105882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3387,7 +3387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.275}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 284, y: -32}
+  m_AnchoredPosition: {x: 264, y: -47}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1776262529
@@ -3412,15 +3412,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: E M BER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+  m_sharedMaterial: {fileID: 2615935269668944967, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1027160378
-  m_fontColor: {r: 0.2264151, g: 0.22321111, b: 0.22321111, a: 0.23921569}
+    rgba: 1396259130
+  m_fontColor: {r: 0.2264151, g: 0.22321111, b: 0.22321111, a: 0.3254902}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4152,6 +4152,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3980485084958843107, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307476195868692646, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149711286147816665, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149711286147816665, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 8149711286147816665, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2615935269668944967, guid: 062fa2b55a76a48cdb69e5243b36e7a7, type: 2}
+    - target: {fileID: 8149711286147816665, guid: 5f737fad6bc82ed469345dcc7a6abe73, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
