@@ -12,8 +12,8 @@ public class KeypadHandler : MonoBehaviour
     public Button[] numericButtons; // Assign 10 buttons for 0-9
     [Tooltip("Button for the Z key.")]
     public Button zButton;
-    [Tooltip("Button for the Q key.")]
-    public Button qButton;
+    [Tooltip("Button for the c key.")]
+    public Button cButton;
     [Header("Sound Settings")]
     [Tooltip("AudioManager for playing sounds.")]
     private AudioManager audioManager;
@@ -54,9 +54,9 @@ public class KeypadHandler : MonoBehaviour
             PlayKeypadSound(10); // Z's sound index
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            HighlightButton(qButton);
+            HighlightButton(cButton);
             PlayKeypadSound(11); // Q's sound index
         }
     }
