@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> sfxClips;
     [Header("Footsteps SFX")]
     [Tooltip("List of footsteps sound effects for random play")]
+    public AudioSource footstepsAudioSource;
     public List<AudioClip> footstepsClips;
     [Header("Button SFX")]
     [Tooltip("List of button click sound effects for random play")]
@@ -75,7 +76,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void UpdateBackgroundMusic(string sceneName)
     {
-        Debug.Log($"Scene loaded: {sceneName}. Updating background music...");
+        // Debug.Log($"Scene loaded: {sceneName}. Updating background music...");
         int musicIndex = GetMusicIndexForScene(sceneName);
 
         if (musicIndex != -1)
@@ -155,12 +156,29 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"SFX index out of range: {index}. Valid range is 0 to {sfxClips.Count - 1}.");
         }
     }
+    // Método para controlar el volumen de los pasos de forma independiente
+    public void SetFootstepsVolume(float volume)
+    {
+        footstepsAudioSource.volume = Mathf.Clamp(volume, 0f, 1f);
+    }
 
     public void PlayFootstepsSFX()
     {
-        PlayRandomSFX(footstepsClips);
+        PlayRandomFootstepsSFX(footstepsClips);
     }
 
+    private void PlayRandomFootstepsSFX(List<AudioClip> clips)
+    {
+        if (clips.Count > 0)
+        {
+            AudioClip randomClip = clips[Random.Range(0, clips.Count)];
+            footstepsAudioSource.PlayOneShot(randomClip);  // Reproduce usando el AudioSource de los pasos
+        }
+        else
+        {
+            Debug.LogWarning("No footsteps sound effects available.");
+        }
+    }
     private void PlayRandomSFX(List<AudioClip> clips)
     {
         if (clips.Count > 0)

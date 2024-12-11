@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -10,9 +10,9 @@ using UnityEngine.InputSystem;
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
+    #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
-#endif
+    #endif
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
@@ -59,9 +59,9 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
+        #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
-#endif
+        #endif
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
@@ -69,18 +69,16 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-
-
         private void Start()
         {
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
+            #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
-#else
+            #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
+            #endif
 
             AssignAnimationIDs();
 
@@ -88,7 +86,6 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
-
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
@@ -97,7 +94,6 @@ namespace StarterAssets
             GroundedCheck();
             Move();
         }
-
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
@@ -106,7 +102,6 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
-
         private void GroundedCheck()
         {
             // set sphere position, with offset
@@ -151,7 +146,7 @@ namespace StarterAssets
             // Reproduce los sonidos de los pasos solo si el jugador está en el suelo y moviéndose
             if (ShouldPlayFootstepsSound(currentHorizontalSpeed))
             {
-                AudioManager.Instance.PlayFootstepsSFX();
+                
             }
         }
         private Vector3 GetTargetDirection()
@@ -255,7 +250,7 @@ namespace StarterAssets
         }
         private void OnFootstep()
         {
-            
+            AudioManager.Instance.PlayFootstepsSFX();
         }
 
         private void OnLand()
