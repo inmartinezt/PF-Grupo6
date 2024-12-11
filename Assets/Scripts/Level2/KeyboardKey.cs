@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,7 +11,6 @@ public class KeyboardKey : MonoBehaviour
     [Header(" Events ")]
     public static Action<char> onKeyPressed;
 
-
     void Start()
     {
           GetComponent<Button>().onClick.AddListener(SendKeyPressedEvent);
@@ -24,9 +21,9 @@ public class KeyboardKey : MonoBehaviour
     {
         
     }
-
     private void SendKeyPressedEvent()
     {
           onKeyPressed?.Invoke(letterText.text[0]);
+          AudioManager.Instance.PlayButtonSFX();
     }
 }

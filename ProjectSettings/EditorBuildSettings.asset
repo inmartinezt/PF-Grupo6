@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GamePlay.unity
     guid: c1ce60bd746638c4b949f621faaf76ca
   - enabled: 1
-    path: Assets/Word Finder/Scenes/Wordle.unity
+    path: Assets/Scenes/Wordle.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Level3.unity
